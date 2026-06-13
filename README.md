@@ -178,7 +178,10 @@ curl -X POST http://localhost:8000/chat \
 
 
 
-**Backend**
+**Backend API**
+
+<img width="1328" height="342" alt="image" src="https://github.com/user-attachments/assets/f1e20fc9-a7e7-4089-b20f-e33eb0e237a0" />
+
 ---
 
 ## 🔐 Environment Variables
