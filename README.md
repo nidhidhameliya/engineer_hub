@@ -161,11 +161,7 @@ curl -X POST http://localhost:8000/chat \
   -H "Content-Type: application/json" \
   -d '{"question": "How does authentication work?", "stream": false}'
 ```
-<img width="1919" height="1063" alt="Screenshot 2026-06-13 151943" src="https://github.com/user-attachments/assets/cb604366-cd50-42b8-8858-1597e0631e05" />
-<img width="1910" height="936" alt="Screenshot 2026-06-13 151608" src="https://github.com/user-attachments/assets/f702125d-90ee-456e-bf24-e90b4c9b90cb" />
-<img width="1901" height="841" alt="Screenshot 2026-06-13 151037" src="https://github.com/user-attachments/assets/e6076ede-f1bd-47aa-8b76-aebe697f2ef4" />
-<img width="1919" height="676" alt="Screenshot 2026-06-13 150910" src="https://github.com/user-attachments/assets/7740a611-52ba-43ea-a208-7281bbabb121" />
-<img width="1334" height="656" alt="Screenshot 2026-06-13 134538" src="https://github.com/user-attachments/assets/d288435e-a211-4427-be66-29dd1234824f" />
+
 
 ---
 
