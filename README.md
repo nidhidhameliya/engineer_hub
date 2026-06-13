@@ -162,6 +162,18 @@ curl -X POST http://localhost:8000/chat \
   -d '{"question": "How does authentication work?", "stream": false}'
 ```
 
+***SCREENSHOTS:***
+
+**Frontend**
+\<img width="1919" height="1033" alt="Screenshot 2026-06-13 153953" src="https://github.com/user-attachments/assets/5309cee1-2d9e-4d81-a9a9-b3d22b2330f7" />
+<img width="1918" height="988" alt="Screenshot 2026-06-13 154044" src="https://github.com/user-attachments/assets/8f3db1bc-1324-4126-9c8d-e07e206a1072" />
+<img width="1916" height="942" alt="Screenshot 2026-06-13 154107" src="https://github.com/user-attachments/assets/352aac11-f9de-479d-8fb6-567d18ce3387" />
+
+<img width="1919" height="1033" alt="Screenshot 2026-06-13 153929" src="https://github.com/user-attachments/assets/eedc616f-4fac-476d-a571-2cb64b5df52b" />
+
+
+<img width="1919" height="1063" alt="Screenshot 2026-06-13 151943" src="https://github.com/user-attachments/assets/e0916cfa-086c-408f-a260-08481ac7bfe4" />
+<img width="1919" height="1039" alt="Screenshot 2026-06-13 154117" src="https://github.com/user-attachments/assets/5e764615-d98f-413c-b37f-7d16124ca1e3" />
 
 ---
 
