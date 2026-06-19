@@ -1,198 +1,504 @@
 # 🧠 Engineering Intelligence Hub
 
-A production-ready RAG (Retrieval-Augmented Generation) system for engineering teams. Ask questions across your entire engineering knowledge base — docs, code, runbooks, incident reports, and architecture diagrams.
+> AI-Powered Knowledge Intelligence Platform for Engineering Teams
 
-![Engineer Hub](./docs/preview.png)
+![Engineering Intelligence Hub](./docs/preview.png)
 
----
+## 👋 Welcome
 
-## ✨ Features
+Engineering Intelligence Hub is a production-ready Retrieval-Augmented Generation (RAG) platform designed specifically for modern software engineering organizations.
 
-- 📄 **Document Ingestion** — PDF, DOCX, TXT, Markdown, JSON, CSV
-- 🐙 **GitHub Repository Indexing** — Clone and index entire repos
-- 🔍 **Hybrid Search** — Vector + BM25 keyword search with MMR re-ranking
-- 💬 **Streaming Chat** — ChatGPT-style interface with real-time responses
-- 📎 **Source Citations** — Every answer includes source files + confidence scores
-- 🏗️ **Architecture Diagram Analysis** — Upload images, ask about services
-- 🚨 **Incident Report Intelligence** — Query postmortems and runbooks
-- 📊 **Admin Dashboard** — Monitor indexed documents and query stats
+Engineering teams generate vast amounts of knowledge every day—architecture documents, runbooks, incident reports, technical specifications, GitHub repositories, postmortems, and internal documentation. Finding the right information at the right time often becomes a challenge.
+
+This platform transforms your engineering knowledge base into an intelligent AI assistant that can answer questions instantly using your organization's own data.
+
+Instead of manually searching through hundreds of documents and repositories, simply ask a question and receive accurate, source-grounded answers with citations.
 
 ---
 
-## 🚀 Quick Start
+# 🚀 What Does It Do?
 
-### Prerequisites
+Engineering Intelligence Hub allows teams to:
 
-- Docker & Docker Compose
-- OpenAI API Key
+* Upload and index technical documents
+* Analyze architecture diagrams using Vision AI
+* Index entire GitHub repositories
+* Query runbooks and incident reports
+* Chat with your engineering knowledge base
+* Receive answers with source citations
+* Monitor usage through an admin dashboard
 
-### 1. Clone and configure
+Every answer is generated from your indexed data, significantly reducing hallucinations and improving trustworthiness.
+
+---
+
+# ✨ Key Features
+
+### 📄 Multi-Format Document Ingestion
+
+Upload and index:
+
+* PDF
+* DOCX
+* TXT
+* Markdown
+* JSON
+* CSV
+
+---
+
+### 🖼️ Architecture Diagram Intelligence
+
+Upload system diagrams and ask questions such as:
+
+* "Which service handles authentication?"
+* "What dependencies does the payment service have?"
+* "Describe the request flow."
+
+Powered by multimodal Vision AI.
+
+---
+
+### 🐙 GitHub Repository Indexing
+
+Index complete repositories directly from GitHub.
+
+The system automatically:
+
+* Clones repositories
+* Extracts source code
+* Generates embeddings
+* Makes code searchable through natural language
+
+Example:
+
+> "How is JWT authentication implemented in the backend?"
+
+---
+
+### 🔍 Hybrid Search Engine
+
+Combines multiple retrieval strategies:
+
+* Semantic Vector Search (ChromaDB)
+* BM25 Keyword Search
+* MMR Re-ranking (Maximal Marginal Relevance)
+
+This dramatically improves retrieval quality compared to vector search alone.
+
+---
+
+### 💬 Streaming AI Chat
+
+Modern ChatGPT-style interface featuring:
+
+* Real-time response streaming
+* Multi-turn conversations
+* Context-aware answers
+* Source-grounded generation
+
+---
+
+### 📎 Source Citations
+
+Every generated response includes:
+
+* Source document names
+* Referenced files
+* Confidence scores
+
+Example:
+
+```text
+Authentication is handled by the Auth Service.
+
+[SOURCE: auth-service.md]
+Confidence: 94%
+```
+
+---
+
+### 🧠 Conversation Memory
+
+Maintain context across conversations.
+
+Example:
+
+```text
+User:
+How does authentication work?
+
+Assistant:
+...
+
+User:
+What database does it use?
+
+Assistant:
+(PostgreSQL, based on the Auth Service architecture.)
+```
+
+---
+
+### 📊 Admin Dashboard
+
+Monitor platform activity:
+
+* Indexed document count
+* Repository statistics
+* Search analytics
+* Query metrics
+* Storage utilization
+
+---
+
+### 🐳 Dockerized Deployment
+
+One-command deployment using Docker Compose.
+
+Perfect for:
+
+* Internal engineering tools
+* Team knowledge portals
+* Enterprise documentation systems
+
+---
+
+# 🏗️ System Architecture
+
+```text
+┌─────────────────┐
+│   Next.js UI    │
+└────────┬────────┘
+         │
+         ▼
+┌─────────────────┐
+│  FastAPI API    │
+└────────┬────────┘
+         │
+ ┌───────┼────────┐
+ │       │        │
+ ▼       ▼        ▼
+LLM   Retrieval  Vision
+(OpenAI) Engine   AI
+         │
+         ▼
+┌─────────────────┐
+│    ChromaDB     │
+│ Vector Database │
+└─────────────────┘
+```
+
+---
+
+# 🛠️ Technology Stack
+
+## Backend
+
+* Python 3.10+
+* FastAPI
+* LangChain
+* ChromaDB
+* OpenAI SDK
+* Structlog
+
+---
+
+## Frontend
+
+* Next.js 15
+* React
+* TypeScript
+* Tailwind CSS
+* Server-Sent Events (SSE)
+
+---
+
+## AI & Retrieval
+
+* GPT-4o
+* OpenAI Embeddings
+* Chroma Vector Store
+* BM25 Search
+* MMR Re-ranking
+
+---
+
+# 🚀 Quick Start (Recommended)
+
+## Prerequisites
+
+* Docker
+* Docker Compose
+* OpenAI API Key
+
+---
+
+## 1. Clone the Repository
 
 ```bash
-git clone <your-repo>
-cd engineer_hub
+git clone https://github.com/your-org/engineering-intelligence-hub.git
 
+cd engineering-intelligence-hub
+```
+
+---
+
+## 2. Configure Environment Variables
+
+Create a local environment file:
+
+```bash
 cp .env.example .env
-# Edit .env and add your OPENAI_API_KEY
 ```
 
-### 2. Start everything
+Edit `.env`:
 
-```bash
-docker-compose up --build
+```env
+OPENAI_API_KEY=sk-your-api-key
+
+# Optional
+GITHUB_TOKEN=your-github-token
+CHROMA_HOST=chromadb
+CHROMA_PORT=8000
+LOG_LEVEL=INFO
 ```
-
-### 3. Open the app
-
-- **Frontend**: http://localhost:3000
-- **Backend API**: http://localhost:8000
-- **API Docs**: http://localhost:8000/docs
-- **ChromaDB**: http://localhost:8001
 
 ---
 
-## 🛠️ Manual Development Setup
+## 3. Start the Application
 
-### Backend
+```bash
+docker-compose up -d --build
+```
+
+Docker will automatically:
+
+* Build the frontend
+* Build the backend
+* Start ChromaDB
+* Connect all services
+
+---
+
+## 4. Access the Platform
+
+| Service           | URL                        |
+| ----------------- | -------------------------- |
+| Frontend          | http://localhost:3000      |
+| Backend API       | http://localhost:8000      |
+| API Documentation | http://localhost:8000/docs |
+| ChromaDB          | http://localhost:8001      |
+
+---
+
+## Stop the Application
+
+```bash
+docker-compose down
+```
+
+---
+
+# 💻 Local Development Setup
+
+## Prerequisites
+
+* Python 3.10+
+* Node.js 18+
+* npm
+
+---
+
+## Backend Setup
 
 ```bash
 cd backend
-python -m venv venv
-source venv/bin/activate  # Windows: venv\Scripts\activate
-pip install -r requirements.txt
 
-# Start ChromaDB (local)
-# Or point CHROMA_HOST=localhost in .env
+python -m venv venv
+
+# Windows
+venv\Scripts\activate
+
+# Linux / macOS
+source venv/bin/activate
+
+pip install -r requirements.txt
 
 uvicorn main:app --reload --port 8000
 ```
 
-### Frontend
+---
+
+## Frontend Setup
 
 ```bash
 cd frontend
+
 npm install
+
 npm run dev
+```
+
+Frontend will be available at:
+
+```text
+http://localhost:3000
 ```
 
 ---
 
-## 📁 Project Structure
+# 📁 Project Structure
 
-```
-engineer_hub/
+```text
+engineering-intelligence-hub/
+│
 ├── backend/
-│   ├── main.py              # FastAPI app entry
-│   ├── config.py            # Settings
-│   ├── requirements.txt
-│   ├── Dockerfile
 │   ├── routers/
-│   │   ├── upload.py        # POST /upload
-│   │   ├── github.py        # POST /github-index
-│   │   ├── chat.py          # POST /chat (SSE)
-│   │   ├── sources.py       # GET /sources
-│   │   └── stats.py         # GET /stats
 │   ├── services/
-│   │   ├── ingestion.py     # Text extraction
-│   │   ├── chunking.py      # Document chunking
-│   │   ├── embedding.py     # OpenAI embeddings
-│   │   ├── retrieval.py     # Hybrid search
-│   │   └── llm.py           # GPT-4o streaming
-│   └── db/
-│       ├── chroma.py        # ChromaDB client
-│       └── stats_store.py   # Query stats
+│   ├── db/
+│   ├── main.py
+│   └── config.py
+│
 ├── frontend/
 │   ├── app/
-│   │   ├── chat/            # Chat interface
-│   │   ├── upload/          # Document upload
-│   │   ├── github/          # GitHub indexing
-│   │   └── admin/           # Dashboard
 │   ├── components/
-│   │   ├── chat/            # Chat components
-│   │   ├── upload/          # Upload components
-│   │   ├── admin/           # Admin components
-│   │   └── layout/          # Sidebar, nav
 │   ├── hooks/
-│   │   └── useChat.ts
 │   └── lib/
-│       ├── api.ts
-│       └── streaming.ts
-├── sample-data/             # Example documents
-├── uploads/                 # Uploaded files (gitignored)
-├── vectorstore/             # ChromaDB data (gitignored)
-├── .env.example
+│
+├── uploads/
+├── vectorstore/
+├── sample-data/
+│
 ├── docker-compose.yml
+├── .env.example
 └── README.md
 ```
 
 ---
 
-## 🔌 API Reference
+# 🔌 API Endpoints
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| POST | `/upload` | Upload and index documents |
-| POST | `/github-index` | Index a GitHub repository |
-| POST | `/chat` | Ask a question (SSE streaming) |
-| GET | `/sources` | List all indexed sources |
-| GET | `/stats` | System statistics |
-| GET | `/health` | Health check |
+| Method | Endpoint        | Description                |
+| ------ | --------------- | -------------------------- |
+| POST   | `/upload`       | Upload and index documents |
+| POST   | `/github-index` | Index GitHub repositories  |
+| POST   | `/chat`         | Query the knowledge base   |
+| GET    | `/sources`      | List indexed sources       |
+| GET    | `/stats`        | System statistics          |
+| GET    | `/health`       | Health check               |
 
 ---
 
-## 💡 Example Usage
+# 📚 Example Usage
 
-### Upload a document
+## Upload a Document
+
 ```bash
 curl -X POST http://localhost:8000/upload \
-  -F "file=@sample-data/auth-service.md"
+-F "file=@sample-data/auth-service.md"
 ```
 
-### Index a GitHub repo
+---
+
+## Index a GitHub Repository
+
 ```bash
 curl -X POST http://localhost:8000/github-index \
-  -H "Content-Type: application/json" \
-  -d '{"repo_url": "https://github.com/your-org/your-repo"}'
+-H "Content-Type: application/json" \
+-d '{
+  "repo_url": "https://github.com/company/backend"
+}'
 ```
 
-### Ask a question
+---
+
+## Ask a Question
+
 ```bash
 curl -X POST http://localhost:8000/chat \
-  -H "Content-Type: application/json" \
-  -d '{"question": "How does authentication work?", "stream": false}'
+-H "Content-Type: application/json" \
+-d '{
+  "question": "How does authentication work?",
+  "stream": false
+}'
 ```
 
-***SCREENSHOTS:***
+---
 
-**Frontend**
-<img width="1919" height="1033" alt="Screenshot 2026-06-13 153953" src="https://github.com/user-attachments/assets/5309cee1-2d9e-4d81-a9a9-b3d22b2330f7" />
+# 🔐 Environment Variables
 
-<img width="1918" height="988" alt="Screenshot 2026-06-13 154044" src="https://github.com/user-attachments/assets/8f3db1bc-1324-4126-9c8d-e07e206a1072" />
-<img width="1916" height="942" alt="Screenshot 2026-06-13 154107" src="https://github.com/user-attachments/assets/352aac11-f9de-479d-8fb6-567d18ce3387" />
-
-<img width="1919" height="1033" alt="Screenshot 2026-06-13 153929" src="https://github.com/user-attachments/assets/eedc616f-4fac-476d-a571-2cb64b5df52b" />
-
-
-<img width="1919" height="1063" alt="Screenshot 2026-06-13 151943" src="https://github.com/user-attachments/assets/e0916cfa-086c-408f-a260-08481ac7bfe4" />
-<img width="1919" height="1039" alt="Screenshot 2026-06-13 154117" src="https://github.com/user-attachments/assets/5e764615-d98f-413c-b37f-7d16124ca1e3" />
-
-
-
-**Backend API**
-
-<img width="1328" height="342" alt="image" src="https://github.com/user-attachments/assets/f1e20fc9-a7e7-4089-b20f-e33eb0e237a0" />
+| Variable       | Required | Description                         |
+| -------------- | -------- | ----------------------------------- |
+| OPENAI_API_KEY | ✅        | OpenAI API Key                      |
+| GITHUB_TOKEN   | ❌        | GitHub PAT for private repositories |
+| CHROMA_HOST    | ❌        | ChromaDB host                       |
+| CHROMA_PORT    | ❌        | ChromaDB port                       |
+| LOG_LEVEL      | ❌        | Logging level                       |
 
 ---
 
-## 🔐 Environment Variables
+# 🎯 Use Cases
 
-| Variable | Required | Description |
-|----------|----------|-------------|
-| `OPENAI_API_KEY` | ✅ | Your OpenAI API key |
-| `GITHUB_TOKEN` | ❌ | GitHub PAT for private repos |
-| `CHROMA_HOST` | ❌ | ChromaDB host (default: localhost) |
-| `CHROMA_PORT` | ❌ | ChromaDB port (default: 8000) |
-| `LOG_LEVEL` | ❌ | Logging level (default: INFO) |
+### Engineering Teams
+
+* Internal documentation assistant
+* Architecture exploration
+* Runbook intelligence
+* Incident analysis
+
+### DevOps Teams
+
+* Query operational runbooks
+* Analyze outages and postmortems
+* Infrastructure knowledge retrieval
+
+### Platform Teams
+
+* Service dependency discovery
+* Codebase exploration
+* Technical onboarding
+
+### Enterprise Organizations
+
+* Private AI knowledge assistant
+* Secure internal search
+* Team productivity enhancement
 
 ---
 
+# 🔮 Future Roadmap
+
+* Slack Integration
+* Microsoft Teams Integration
+* Jira Knowledge Indexing
+* Confluence Integration
+* RBAC & Multi-Tenant Support
+* Knowledge Graph Generation
+* Local LLM Support (Ollama)
+* Advanced Analytics Dashboard
+
+---
+
+# 🤝 Contributing
+
+Contributions, feature requests, and bug reports are welcome.
+
+1. Fork the repository
+2. Create a feature branch
+3. Commit your changes
+4. Submit a Pull Request
+
+---
+
+# 📄 License
+
+Licensed under the MIT License.
+
+---
+
+## ⭐ Engineering Intelligence Hub
+
+**Turn engineering knowledge into an intelligent AI assistant.**
+
+Upload. Index. Ask. Learn.
